@@ -34,11 +34,18 @@ SECRET_KEY = os.environ.get(
 DEBUG = env_to_bool('DJANGO_DEBUG', True)
 # DEBUG = False
 TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'djangoblog-production-9dbb.up.railway.app',
+    '.up.railway.app',  # 允许所有 Railway 子域名
+]
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['*', '127.0.0.1', 'example.com']
-# django 4.0新增配置
-CSRF_TRUSTED_ORIGINS = ['http://example.com']
+# CSRF 信任的来源（重要！）
+CSRF_TRUSTED_ORIGINS = [
+    'https://djangoblog-production-9dbb.up.railway.app',
+    'https://*.up.railway.app',
+]
 # Application definition
 
 
