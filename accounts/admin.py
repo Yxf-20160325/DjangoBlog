@@ -7,7 +7,11 @@ from django.utils.translation import gettext_lazy as _
 # Register your models here.
 from .models import BlogUser
 
-
+if not admin.site.is_registered(Group):
+    @admin.register(Group)
+    class GroupAdmin(admin.ModelAdmin):
+        list_display = ('name', 'pk')
+        search_fields = ('name',)
 class BlogUserCreationForm(forms.ModelForm):
     password1 = forms.CharField(label=_('password'), widget=forms.PasswordInput)
     password2 = forms.CharField(label=_('Enter password again'), widget=forms.PasswordInput)
