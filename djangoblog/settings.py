@@ -40,7 +40,7 @@ ALLOWED_HOSTS = [
     'djangoblog-production-9dbb.up.railway.app',
     '.up.railway.app',  # 允许所有 Railway 子域名
 ]
-
+SITE_URL = "djangoblog-production-9dbb.up.railway.app"
 # CSRF 信任的来源（重要！）
 CSRF_TRUSTED_ORIGINS = [
     'https://djangoblog-production-9dbb.up.railway.app',
@@ -312,13 +312,16 @@ BAIDU_NOTIFY_URL = os.environ.get('DJANGO_BAIDU_NOTIFY_URL') \
                    or 'http://data.zz.baidu.com/urls?site=https://www.lylinux.net&token=1uAOGrMsUm5syDGn'
 
 # Email:
+# settings.py
+
+# QQ邮箱SMTP配置
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = env_to_bool('DJANGO_EMAIL_TLS', False)
-EMAIL_USE_SSL = env_to_bool('DJANGO_EMAIL_SSL', True)
-EMAIL_HOST = os.environ.get('DJANGO_EMAIL_HOST') or 'smtp.mxhichina.com'
-EMAIL_PORT = int(os.environ.get('DJANGO_EMAIL_PORT') or 465)
-EMAIL_HOST_USER = os.environ.get('DJANGO_EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_EMAIL_PASSWORD')
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True  # 端口587使用TLS
+EMAIL_HOST_USER = '3915368760@qq.com'
+EMAIL_HOST_PASSWORD = 'nxhqrdkvxoidcdbi'  # QQ邮箱授权码
+DEFAULT_FROM_EMAIL = '3915368760@qq.com'  # 发送邮件的邮箱
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 # Setting debug=false did NOT handle except email notifications
